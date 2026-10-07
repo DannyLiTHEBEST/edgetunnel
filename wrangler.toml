@@ -10,6 +10,9 @@ keep_vars = true
 CF_REQUEST_LIMIT = "10000000"
 CF_BILLING_DAY = "1"
 
+[limits]
+cpu_ms = 300000
+
 [[kv_namespaces]]
 binding = "KV"
 id = "00e8505adb44491aad3efc58aa489d58"
