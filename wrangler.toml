@@ -9,6 +9,6 @@ keep_vars = true
 # CF_REQUEST_LIMIT = "10000000"   # 默认即为 1000 万/月
 # CF_BILLING_DAY = "1"            # 默认自然月 1 日重置；可改成实际续费日
 
-#[[kv_namespaces]]
-#binding = "KV"			#KV绑定名默认不可修改
-#id = ""				#KV数据库id
+[[kv_namespaces]]
+binding = "KV"
+id = "00e8505adb44491aad3efc58aa489d58"
