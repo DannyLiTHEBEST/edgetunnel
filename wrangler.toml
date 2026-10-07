@@ -5,9 +5,10 @@ keep_vars = true
 
 # paid-custom 分支使用 paid-worker.js 作为入口。
 # main 分支仍保持上游原始 _worker.js，便于 Upstream Sync 自动同步。
-# 可选 Cloudflare 环境变量：
-# CF_REQUEST_LIMIT = "10000000"   # 默认即为 1000 万/月
-# CF_BILLING_DAY = "1"            # 默认自然月 1 日重置；可改成实际续费日
+
+[vars]
+CF_REQUEST_LIMIT = "10000000"
+CF_BILLING_DAY = "1"
 
 [[kv_namespaces]]
 binding = "KV"
