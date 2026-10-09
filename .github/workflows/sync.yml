@@ -3,6 +3,10 @@ name: Upstream Sync
 permissions:
   contents: write
 
+concurrency:
+  group: upstream-sync-${{ github.repository }}
+  cancel-in-progress: false
+
 on:
   schedule:
     - cron: "0 0 * * *" # every day
@@ -42,3 +46,23 @@ jobs:
             fi
             git push origin main
           fi
+
+      - name: Checkout paid-custom
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          ref: paid-custom
+
+      - name: Merge main into paid-custom
+        run: |
+          git config user.name "GH Action - Upstream Sync"
+          git config user.email "action@github.com"
+          git fetch origin main
+
+          if ! git merge --no-ff --no-edit origin/main; then
+            echo "[Error] 合并 main 到 paid-custom 产生冲突；未推送任何改动，请手动处理冲突。"
+            echo "[Error] Merge conflict detected from main into paid-custom; no changes were pushed."
+            exit 1
+          fi
+
+          git push origin paid-custom
